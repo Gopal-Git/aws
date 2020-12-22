@@ -1,0 +1,4 @@
+aws\frauddetection\analysis\LogAnalysis.class
+aws\frauddetection\App.class
+aws\frauddetection\MainClass.class
+aws\frauddetection\analysis\model\Report.class

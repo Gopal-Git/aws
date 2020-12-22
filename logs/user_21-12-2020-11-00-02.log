@@ -1,0 +1,23 @@
+2020-12-21 23:00:03,013 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:00:07 LoginService 2719322321342  UID101 Login-Successful 172.65.88.54
+2020-12-21 23:00:03,014 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:00:28 TransactionService - 2719322321342 UID101 Balance Inquiry  172.65.88.54
+2020-12-21 23:00:03,014 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:00:32 TransactionService - 2719322321342 UID101 Balance Inquiry  172.65.88.54
+2020-12-21 23:00:03,014 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:00:55 TransactionService - 2719322321342 UID101 Amount Debited  172.65.88.54
+2020-12-21 23:00:03,014 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:01:21 TransactionService - 2719322321342 UID101 Amount Credited  172.65.88.54
+2020-12-21 23:00:03,015 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:01:30 TransactionService - 2719322321342 UID101 Amount Debited  172.65.88.54
+2020-12-21 23:00:03,015 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:02:07 LoginService 2719322321342  UID101 Logout-Successful 172.65.88.54
+2020-12-21 23:00:03,015 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:05:07 LoginService 23343J43334  UID101 Login-Successful 172.60.32.66
+2020-12-21 23:00:03,015 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:06:28 TransactionService - 23343J43334 UID101 Balance Inquiry 172.60.32.66
+2020-12-21 23:00:03,015 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:06:32 TransactionService - 23343J43334 UID101 Balance Inquiry  172.60.32.66
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:06:55 TransactionService - 23343J43334 UID101 Amount Debited  172.60.32.66
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:07:21 TransactionService - 23343J43334 UID101 Amount Debited   172.60.32.66
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:08:30 TransactionService - 23343J43334 UID101 Amount Debited  172.60.32.66
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:08:07 LoginService 23343J43334  UID101 Logout-Successful 172.60.32.66
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:05:07 LoginService 23343J23443  UID101 Login-Successful 172.69.67.88
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:06:28 TransactionService - 23343J23443 UID101 Balance Inquiry 172.69.67.88
+2020-12-21 23:00:03,016 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:06:32 TransactionService - 23343J23443 UID101 Balance Inquiry  172.69.67.88
+2020-12-21 23:00:03,017 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:06:55 TransactionService - 23343J23443 UID101 Amount Credited  172.69.67.88
+2020-12-21 23:00:03,017 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:07:21 TransactionService - 23343J23443 UID101 Amount Credited   172.69.67.88
+2020-12-21 23:00:03,017 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:08:30 TransactionService - 23343J23443 UID101 Amount Credited  172.69.67.88
+2020-12-21 23:00:03,017 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:08:07 LoginService 23343J23443  UID101 Logout-Successful 172.69.67.88
+2020-12-21 23:00:03,017 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:05:07 LoginService UID101 Login-Attempted-Failed 192.168.30.01
+2020-12-21 23:00:03,017 INFO [aws.frauddetection.MainClass] - 2020-11-26 00:05:07 LoginService UID101 Login-Attempted-Failed 192.102.06.78
