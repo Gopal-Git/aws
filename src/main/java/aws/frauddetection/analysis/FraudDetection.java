@@ -32,7 +32,7 @@ public class FraudDetection {
 		List<String> sessionLogs = new ArrayList<>();
 		try {
 			//TODO Read from S3 instead
-			reader = new BufferedReader(new FileReader("F:\\IMPETUS\\AWS_impetus\\input\\FakerLogs_2020_12_21_17_39.txt"));
+			reader = new BufferedReader(new FileReader("input\\FakerLogs_2020_12_21_17_39.txt"));
 			String line = reader.readLine();
 			while (line != null) {
 				if(line.contains("Login-Attempted-Failed")) {
