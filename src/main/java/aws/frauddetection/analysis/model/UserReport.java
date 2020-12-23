@@ -3,13 +3,19 @@ package aws.frauddetection.analysis.model;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/**
+ * @author CEP-A41
+ *
+ */
 public class UserReport {
 
 	String userId;
 	List<SessionTransaction> sessionTransaction;
 	int countOfFailedTransaction;
 	int countOfDifferentLocation;
-//	@Transient
+	@JsonIgnore
 	Set<String> differentLocations;
 	
 	

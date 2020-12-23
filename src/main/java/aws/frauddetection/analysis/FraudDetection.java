@@ -1,32 +1,52 @@
 package aws.frauddetection.analysis;
 
+import static aws.frauddetection.analysis.constants.FraudDectectionConstants.LOGOUT_SERVICE_MSG;
+import static aws.frauddetection.analysis.constants.FraudDectectionConstants.LOGOUT_SUCCESS_MSG;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
 import aws.frauddetection.analysis.model.UserReport;
-
+import aws.frauddetection.analysis.utilty.FraudDetectionUtility;
+/**
+ * @author CEP-A41 
+ * 
+ * Analyzes logs and detects fraud. The report is pushed to S3 bucket and notification is sent to the user
+ * 
+ *
+ */
 public class FraudDetection {
+
 	private static Logger log = Logger.getLogger(FraudDetection.class.getName());
 
 	public static void main(String[] args) {
 		Map<String, UserReport> report = new HashMap<>();
 		BufferedReader reader = null;
+		List<String> sessionLogs = new ArrayList<>();
 		try {
-			reader = new BufferedReader(
-					new FileReader("F:\\IMPETUS\\AWS_impetus\\input\\FakerLogs_2020_12_21_17_39.txt"));
+			//TODO Read from S3 instead
+			reader = new BufferedReader(new FileReader("F:\\IMPETUS\\AWS_impetus\\input\\FakerLogs_2020_12_21_17_39.txt"));
 			String line = reader.readLine();
 			while (line != null) {
-				System.out.println(line);
 				if(line.contains("Login-Attempted-Failed")) {
-					analysisForFailedTransaction(report, line);
-					System.out.println("failed transaction");
+					FraudDetectionUtility.analysisForFailedTransaction(report, line);
+					log.info("There is a failed transaction");
+				} else {
+					//Perform other analysis
+						sessionLogs.add(line);
+					if (line.contains(LOGOUT_SERVICE_MSG) && line.contains(LOGOUT_SUCCESS_MSG)) {
+						//Perform analysis on session data captured 
+						FraudDetectionUtility.analysisForNoOfTransactionInSession(sessionLogs,report);
+						FraudDetectionUtility.analysisForNoOfDifferentLocations(sessionLogs,report);
+						sessionLogs.clear();
+					}
 				}
 				line = reader.readLine();
 			}
@@ -37,50 +57,12 @@ public class FraudDetection {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error("Unable to close connectin",e);
 				}
 			}
 		}
+		FraudDetectionUtility.convertToJsonAndPushReportsToS3(report);
+		FraudDetectionUtility.sendNotification(report);
 	}
 
-	private static void analysisForFailedTransaction(Map<String, UserReport> report, String line) {
-		//Its failed transaction
-		String[] tokens = line.split("  ");
-		String userId = tokens[2];
-		String location = tokens[4];
-		if(report.get(userId)==null) {
-			populateMapForFailedTransaction(report, userId,location);
-		} else {
-			// get existing object from 
-			UserReport userReport  = report.get(userId);
-			int countOfFailedTransaction = userReport.getCountOfFailedTransaction();
-			int updatedCountOfFailedTransaction = countOfFailedTransaction+1;
-			
-			// update locations
-			Set<String> differentLocations = userReport.getDifferentLocations();
-			differentLocations.add(location);
-			int updatedCountOfDifferentLocation = differentLocations.size();
-			
-			userReport.setCountOfDifferentLocation(updatedCountOfDifferentLocation);
-			userReport.setDifferentLocations(differentLocations);
-			userReport.setCountOfFailedTransaction(updatedCountOfFailedTransaction);
-			report.put(userId, userReport);
-		}
-	}
-
-	private static void populateMapForFailedTransaction(Map<String, UserReport> report, String userId,String location) {
-		//populate UserReport for failed transaction
-		UserReport userReport = new UserReport();
-		int countOfFailedTransaction=1;//this is first failed Transaction;
-		int countOfDifferentLocation= 1; //this is first failed Transaction
-		Set<String> differentLocations = new HashSet<>();
-		differentLocations.add(location);
-		
-		userReport.setUserId(userId);
-		userReport.setCountOfDifferentLocation(countOfDifferentLocation);
-		userReport.setDifferentLocations(differentLocations);
-		userReport.setCountOfFailedTransaction(countOfFailedTransaction);
-		report.put(userId, userReport);
-	}
 }

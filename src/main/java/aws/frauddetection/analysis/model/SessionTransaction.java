@@ -1,5 +1,9 @@
 package aws.frauddetection.analysis.model;
 
+/**
+ * @author CEP-A41
+ *
+ */
 public class SessionTransaction {
 
 	int countOfTransactionInSession;
